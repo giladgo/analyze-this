@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921054412) do
+ActiveRecord::Schema.define(version: 20160921055558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,16 +33,16 @@ ActiveRecord::Schema.define(version: 20160921054412) do
   create_table "transactions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "merchant_id"
-    t.integer  "amount"
-    t.string   "currency"
+    t.integer  "amount",                          null: false
+    t.string   "currency",        default: "ILS", null: false
     t.integer  "charge_amount"
-    t.integer  "payment_ordinal"
-    t.integer  "payment_count"
-    t.integer  "fee_amount"
-    t.string   "fee_currency"
+    t.integer  "payment_ordinal", default: 1,     null: false
+    t.integer  "payment_count",   default: 1,     null: false
+    t.integer  "fee_amount",      default: 0,     null: false
+    t.string   "fee_currency",    default: "ILS", null: false
     t.date     "txn_date"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["merchant_id"], name: "index_transactions_on_merchant_id", using: :btree
     t.index ["user_id"], name: "index_transactions_on_user_id", using: :btree
   end
