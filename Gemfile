@@ -5,6 +5,7 @@ gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 3.0'
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'money', '~> 6.7', '>= 6.7.1'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'byebug', platform: :mri
