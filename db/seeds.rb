@@ -5,3 +5,47 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+def create_transaction(user, merchant, amount, date)
+  user.transactions.create!(
+      merchant: merchant, amount: amount, charge_amount: amount, txn_date: date)
+end
+
+restaurants = Category.create!(name: 'Restaurants')
+groceries = Category.create!(name: 'Groceries')
+electronics = Category.create!(name: 'Electronics')
+clothing = Category.create!(name: 'Clothing')
+
+vong = Merchant.create!(name: 'Vong', category: restaurants)
+rustico = Merchant.create!(name: 'Rustico', category: restaurants)
+cafenoir = Merchant.create!(name: 'Cafe Noir', category: restaurants)
+salam = Merchant.create!(name: 'Salam Bombay', category: restaurants)
+giraffe = Merchant.create!(name: 'Giraffe', category: restaurants)
+
+sufersal = Merchant.create!(name: 'Sufersal', category: groceries)
+ampm = Merchant.create!(name: 'AM/PM', category: groceries)
+victory = Merchant.create!(name: 'Victory', category: groceries)
+
+apple = Merchant.create!(name: 'Apple Store', category: electronics)
+ksp = Merchant.create!(name: 'KSP', category: electronics)
+
+hm = Merchant.create!(name: 'H&M', category: clothing)
+zara = Merchant.create!(name: 'Zara', category: clothing)
+
+user = User.create!(name: 'Ani Ehod')
+
+create_transaction(user, vong, 5000, 5.days.ago)
+create_transaction(user, rustico, 7500, 2.days.ago)
+create_transaction(user, cafenoir, 7500, 1.day.ago)
+create_transaction(user, salam, 3000, 6.days.ago)
+create_transaction(user, giraffe, 6000, 4.days.ago)
+
+create_transaction(user, sufersal, 30000, 4.days.ago)
+create_transaction(user, ampm, 10000, 10.days.ago)
+create_transaction(user, victory, 3000, 7.days.ago)
+
+create_transaction(user, apple, 1200000, 20.day.ago)
+create_transaction(user, ksp, 15000, 11.day.ago)
+
+create_transaction(user, hm, 17000, 14.day.ago)
+create_transaction(user, zara, 20000, 18.day.ago)
