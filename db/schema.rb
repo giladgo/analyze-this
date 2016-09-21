@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(version: 20160921055558) do
     t.integer  "merchant_id"
     t.integer  "amount",                          null: false
     t.string   "currency",        default: "ILS", null: false
-    t.integer  "charge_amount"
+    t.integer  "charge_amount",                   null: false
     t.integer  "payment_ordinal", default: 1,     null: false
     t.integer  "payment_count",   default: 1,     null: false
     t.integer  "fee_amount",      default: 0,     null: false
     t.string   "fee_currency",    default: "ILS", null: false
-    t.date     "txn_date"
+    t.datetime "txn_date",                        null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.index ["merchant_id"], name: "index_transactions_on_merchant_id", using: :btree
