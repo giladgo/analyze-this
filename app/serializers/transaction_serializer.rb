@@ -3,14 +3,14 @@ class TransactionSerializer < ActiveModel::Serializer
   belongs_to :merchant
 
   def amount
-    Money.from_amount(object.amount, object.currency).format
+    Money.new(object.amount, object.currency).format
   end
 
   def charge_amount
-    Money.from_amount(object.charge_amount, object.currency).format
+    Money.new(object.charge_amount, object.currency).format
   end
 
   def fee_amount
-    Money.from_amount(object.fee_amount, object.fee_currency).format
+    Money.new(object.fee_amount, object.fee_currency).format
   end
 end
