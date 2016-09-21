@@ -51,9 +51,9 @@ create_transaction(user, hm, 17000, 14.day.ago)
 create_transaction(user, zara, 20000, 18.day.ago)
 
 
-create_transaction(user, vong, 5000, 35.days.ago)
-create_transaction(user, rustico, 7500, 32.days.ago)
-create_transaction(user, cafenoir, 7500, 31.day.ago)
+create_transaction(user, vong, 5000, 25.days.ago)
+create_transaction(user, rustico, 7500, 22.days.ago)
+create_transaction(user, cafenoir, 7500, 21.day.ago)
 create_transaction(user, salam, 3000, 36.days.ago)
 create_transaction(user, giraffe, 6000, 34.days.ago)
 
@@ -61,8 +61,42 @@ create_transaction(user, sufersal, 30000, 44.days.ago)
 create_transaction(user, ampm, 10000, 50.days.ago)
 create_transaction(user, victory, 3000, 67.days.ago)
 
-create_transaction(user, apple, 1200000, 70.day.ago)
+create_transaction(user, apple, 12000, 70.day.ago)
 create_transaction(user, ksp, 15000, 71.day.ago)
 
 create_transaction(user, hm, 17000, 74.day.ago)
 create_transaction(user, zara, 20000, 80.day.ago)
+
+
+create_transaction(user, vong, 500, 105.days.ago)
+create_transaction(user, rustico, 4500, 82.days.ago)
+create_transaction(user, cafenoir, 3500, 101.day.ago)
+create_transaction(user, salam, 2000, 96.days.ago)
+create_transaction(user, giraffe, 1000, 94.days.ago)
+
+create_transaction(user, sufersal, 10000, 94.days.ago)
+create_transaction(user, ampm, 20000, 90.days.ago)
+create_transaction(user, victory, 1000, 107.days.ago)
+
+create_transaction(user, apple, 1000, 120.day.ago)
+create_transaction(user, ksp, 4000, 111.day.ago)
+
+create_transaction(user, hm, 20000, 114.day.ago)
+create_transaction(user, zara, 50000, 118.day.ago)
+
+
+create_transaction(user, vong, 5000, 135.days.ago)
+create_transaction(user, rustico, 7500, 132.days.ago)
+create_transaction(user, cafenoir, 7500, 131.day.ago)
+create_transaction(user, salam, 3000, 136.days.ago)
+create_transaction(user, giraffe, 6000, 134.days.ago)
+
+create_transaction(user, sufersal, 30000, 144.days.ago)
+create_transaction(user, ampm, 10000, 150.days.ago)
+create_transaction(user, victory, 3000, 167.days.ago)
+
+create_transaction(user, apple, 1200000, 170.day.ago)
+create_transaction(user, ksp, 15000, 171.day.ago)
+
+create_transaction(user, hm, 17000, 174.day.ago)
+create_transaction(user, zara, 20000, 179.day.ago)
