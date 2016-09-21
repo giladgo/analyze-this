@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 3.0'
+gem 'active_model_serializers', '~> 0.10.2'
+gem 'money', '~> 6.7', '>= 6.7.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri

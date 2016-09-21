@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
     transactions = current_user.transactions.where(txn_date: 3.months.ago.beginning_of_day..DateTime.now.end_of_day)
 
     respond_to do |format|
-      format.json {render json: transactions.as_json}
+      format.json {render json: transactions}
     end
   end
 
