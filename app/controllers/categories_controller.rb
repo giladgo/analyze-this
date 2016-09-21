@@ -8,6 +8,13 @@ class CategoriesController < ApplicationController
     end
   end
 
+	def transactions
+		transactions = Category.find(params[:id]).transactions
+		respond_to do |format|
+      format.json {render json: transactions}
+    end
+	end
+
   private
 
   def current_user
