@@ -7,4 +7,10 @@ Rails.application.routes.draw do
 		end
 	end
 
+	resources :merchants, defaults: {format: 'json'} do
+		member do
+			get :transactions
+		end
+	end
+
 end
