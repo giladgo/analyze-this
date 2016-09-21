@@ -49,3 +49,20 @@ create_transaction(user, ksp, 15000, 11.day.ago)
 
 create_transaction(user, hm, 17000, 14.day.ago)
 create_transaction(user, zara, 20000, 18.day.ago)
+
+
+create_transaction(user, vong, 5000, 35.days.ago)
+create_transaction(user, rustico, 7500, 32.days.ago)
+create_transaction(user, cafenoir, 7500, 31.day.ago)
+create_transaction(user, salam, 3000, 36.days.ago)
+create_transaction(user, giraffe, 6000, 34.days.ago)
+
+create_transaction(user, sufersal, 30000, 44.days.ago)
+create_transaction(user, ampm, 10000, 50.days.ago)
+create_transaction(user, victory, 3000, 67.days.ago)
+
+create_transaction(user, apple, 1200000, 70.day.ago)
+create_transaction(user, ksp, 15000, 71.day.ago)
+
+create_transaction(user, hm, 17000, 74.day.ago)
+create_transaction(user, zara, 20000, 80.day.ago)
