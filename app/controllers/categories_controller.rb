@@ -15,11 +15,4 @@ class CategoriesController < ApplicationController
     end
 	end
 
-  private
-
-  def current_user
-    # TODO: fetch user by id passed in header
-    User.first
-  end
-
 end
