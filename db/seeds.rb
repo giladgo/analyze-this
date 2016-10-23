@@ -32,7 +32,7 @@ ksp = Merchant.create!(name: 'KSP', category: electronics)
 hm = Merchant.create!(name: 'H&M', category: clothing)
 zara = Merchant.create!(name: 'Zara', category: clothing)
 
-user = User.create!(name: 'Ani Ehod')
+user = User.create!(name: 'Ani Ehod', email: 'ani.ehod@gmail.com')
 
 create_transaction(user, vong, 5000, 5.days.ago)
 create_transaction(user, rustico, 7500, 2.days.ago)
