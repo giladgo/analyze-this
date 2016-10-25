@@ -15,4 +15,10 @@ Rails.application.routes.draw do
 
 	resource :user, only: [:create], controller: :user, defaults: {format: 'json'}
 
+	resources :documents, only: [], controller: :documents, defaults: {format: 'json'} do
+		collection do
+			post :import_google_drive_resource
+		end
+	end
+
 end

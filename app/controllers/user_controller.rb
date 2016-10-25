@@ -15,8 +15,10 @@ class UserController < ApplicationController
       return
     end
 
-    user = User.find_or_create_by!(id_token: id_token) do |user|
-      user.email = response.parsed_response['email']
+    email = response.parsed_response['email']
+    user = User.find_or_create_by!(email: email) do |user|
+      user.id_token = id_token
+      user.email = email
       user.name = response.parsed_response['name']
     end
     render json: user
