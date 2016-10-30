@@ -1,12 +1,11 @@
+require 'google/api_client/client_secrets'
+
 class UserController < ApplicationController
 
   def create
     id_token = params[:id_token]
-    user = User.find_by(id_token: id_token)
-    if user.present?
-      render json: user
-      return
-    end
+    auth_code = params[:auth_code]
+    refresh_tokens = params[:refresh_tokens] == 'true'
 
     response = GoogleApi.new.verify_id_token(id_token)
     if response.code != 200
@@ -17,10 +16,19 @@ class UserController < ApplicationController
 
     email = response.parsed_response['email']
     user = User.find_or_create_by!(email: email) do |user|
-      user.id_token = id_token
       user.email = email
       user.name = response.parsed_response['name']
     end
+
+    if refresh_tokens
+      client_secrets = Google::APIClient::ClientSecrets.load('config/client_secrets.json')
+      auth_client = client_secrets.to_authorization
+      auth_client.grant_type = 'authorization_code'
+      auth_client.code = auth_code
+      auth_client.fetch_access_token!
+      user.update!(refresh_token: auth_client.refresh_token, access_token: auth_client.access_token)
+    end
+
     render json: user
   rescue Exception => e
     Rails.logger.error("#{e.message}\n " + e.backtrace.join("\n "))
