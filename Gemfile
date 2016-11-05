@@ -8,6 +8,7 @@ gem 'money', '~> 6.7', '>= 6.7.1'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'google-api-client', '~> 0.9.15'
 gem 'httparty', '~> 0.14.0'
+gem 'pdf-reader', '~> 1.4'
 
 group :development, :test do
   gem 'byebug', platform: :mri

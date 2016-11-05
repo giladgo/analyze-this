@@ -13,15 +13,23 @@ class DocumentsController < ApplicationController
     auth_client = client_secrets.to_authorization
     auth_client.access_token = current_user.access_token
     auth_client.refresh_token = current_user.refresh_token
-    auth_client.refresh!
 
     drive = Drive::DriveService.new
     drive.authorization = auth_client
     drive.client_options.application_name = "Analyze This - Dev"
 
     Google::Apis.logger.level = Logger::DEBUG
-    content = drive.get_file(drive_id, download_dest: StringIO.new)
-    VisaCalDocumentParser.new(content.string)
+    io = drive.get_file(drive_id, download_dest: StringIO.new)
+    transactions = VisaCalDocumentParser.new.parse(io)
+
+    transactions.each do |transaction|
+      Rails.logger.debug "Date: #{transaction.date}"
+      Rails.logger.debug "Merchant: #{transaction.merchant}"
+      Rails.logger.debug "Category: #{transaction.category}"
+      Rails.logger.debug "Amount: #{transaction.amount}"
+      Rails.logger.debug "Charge amount: #{transaction.charge_amount}"
+      Rails.logger.debug "\n"
+    end
   end
 
 end
