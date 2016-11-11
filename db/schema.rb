@@ -16,18 +16,20 @@ ActiveRecord::Schema.define(version: 20160919075631) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                         null: false
+    t.string   "alternate_names", default: [],              array: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
   create_table "merchants", force: :cascade do |t|
-    t.string   "name",        null: false
+    t.string   "name",                         null: false
+    t.string   "alternate_names", default: [],              array: true
     t.string   "logo_url"
     t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["category_id"], name: "index_merchants_on_category_id", using: :btree
     t.index ["name"], name: "index_merchants_on_name", unique: true, using: :btree
   end
