@@ -8,6 +8,13 @@ class DocumentsController < ApplicationController
   def import_google_drive_resource
     drive_id = params[:drive_id]
     Rails.logger.debug("Importing google drive resource with id: #{drive_id}")
+    document = current_user.documents.find_by(document_id: drive_id)
+    if document.present?
+      Rails.logger.debug("Attempting to import an existing document: #{drive_id}")
+      return
+    end
+
+    document = current_user.documents.create!(document_id: drive_id)
 
     client_secrets = Google::APIClient::ClientSecrets.load('config/client_secrets.json')
     auth_client = client_secrets.to_authorization
@@ -22,7 +29,7 @@ class DocumentsController < ApplicationController
     io = drive.get_file(drive_id, download_dest: StringIO.new)
     transactions = VisaCalDocumentParser.new.parse(io)
 
-    TransactionsCreator.create_transactions(current_user, transactions)
+    TransactionsCreator.create_transactions(current_user, document, transactions)
   end
 
 end
