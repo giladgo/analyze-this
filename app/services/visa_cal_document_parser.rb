@@ -1,4 +1,5 @@
 require 'csv'
+require 'bidi'
 
 class VisaCalDocumentParser < DocumentParser
 
@@ -78,14 +79,15 @@ class VisaCalDocumentParser < DocumentParser
   def parse_csv(csv_file_path)
     transactions = []
 
+    bidi = Bidi.new
+
     CSV.foreach(csv_file_path, col_sep: '#') do |row|
       transaction = DocumentParser::Transaction.new
       transaction.charge_amount = parse_amount(row[0])
       transaction.amount = parse_amount(row[1])
-      transaction.category = row[2]
-      transaction.merchant = row[3]
+      transaction.category = format_text(bidi, row[2])
+      transaction.merchant = format_text(bidi, row[3])
       transaction.date = row[4]
-
       transactions << transaction
     end
 
@@ -94,6 +96,14 @@ class VisaCalDocumentParser < DocumentParser
 
   def parse_amount(str)
     (str.slice(1, str.length - 1).gsub(',', '').to_f * 100).floor
+  end
+
+  def format_text(bidi, text)
+    if ("א".."ת").to_a.any? {|character| text.include?(character)}
+      bidi.render_visual(text)
+    else
+      text
+    end
   end
 
 end

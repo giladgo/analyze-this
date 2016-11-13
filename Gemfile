@@ -9,6 +9,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'google-api-client', '~> 0.9.15'
 gem 'httparty', '~> 0.14.0'
 gem 'pdf-reader', '~> 1.4'
+gem 'bidi', '~> 0.0.2'
 
 group :development, :test do
   gem 'byebug', platform: :mri

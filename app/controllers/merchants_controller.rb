@@ -1,5 +1,4 @@
 class MerchantsController < ApplicationController
-
   def index
     merchants = Merchant.all
 
@@ -14,5 +13,4 @@ class MerchantsController < ApplicationController
       format.json {render json: transactions}
     end
 	end
-
 end
