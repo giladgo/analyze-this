@@ -22,14 +22,7 @@ class DocumentsController < ApplicationController
     io = drive.get_file(drive_id, download_dest: StringIO.new)
     transactions = VisaCalDocumentParser.new.parse(io)
 
-    transactions.each do |transaction|
-      Rails.logger.debug "Date: #{transaction.date}"
-      Rails.logger.debug "Merchant: #{transaction.merchant}"
-      Rails.logger.debug "Category: #{transaction.category}"
-      Rails.logger.debug "Amount: #{transaction.amount}"
-      Rails.logger.debug "Charge amount: #{transaction.charge_amount}"
-      Rails.logger.debug "\n"
-    end
+    TransactionsCreator.create_transactions(current_user, transactions)
   end
 
 end
