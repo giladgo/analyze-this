@@ -5,30 +5,19 @@ Drive = Google::Apis::DriveV3
 
 class DocumentsController < ApplicationController
 
-  def import_google_drive_resource
-    drive_id = params[:drive_id]
-    Rails.logger.debug("Importing google drive resource with id: #{drive_id}")
-    document = current_user.documents.find_by(document_id: drive_id)
+  def create
+    document_id = params[:document_id]
+    document = current_user.documents.find_by(document_id: document_id)
     if document.present?
-      Rails.logger.debug("Attempting to import an existing document: #{drive_id}")
+      Rails.logger.debug("Ignoring attempt to import an existing document: #{document_id}")
       return
     end
 
-    document = current_user.documents.create!(document_id: drive_id)
-
-    client_secrets = Google::APIClient::ClientSecrets.load('config/client_secrets.json')
-    auth_client = client_secrets.to_authorization
-    auth_client.access_token = current_user.access_token
-    auth_client.refresh_token = current_user.refresh_token
-
-    drive = Drive::DriveService.new
-    drive.authorization = auth_client
-    drive.client_options.application_name = "Analyze This - Dev"
-
-    Google::Apis.logger.level = Logger::DEBUG
-    io = drive.get_file(drive_id, download_dest: StringIO.new)
+    file = params['multipart/form-data']
+    io = StringIO.new(file[0])
     transactions = VisaCalDocumentParser.new.parse(io)
 
+    document = current_user.documents.create!(document_id: document_id)
     TransactionsCreator.create_transactions(current_user, document, transactions)
   end
 
