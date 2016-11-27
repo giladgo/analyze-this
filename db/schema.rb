@@ -62,12 +62,14 @@ ActiveRecord::Schema.define(version: 20161113214123) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "account_id",    null: false
     t.string   "name",          null: false
     t.string   "email",         null: false
     t.string   "access_token"
     t.string   "refresh_token"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["account_id"], name: "index_users_on_account_id", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

@@ -12,10 +12,10 @@ class AuthenticationController < ApplicationController
       return
     end
 
-    email = response.parsed_response['email']
-    user = User.find_or_create_by!(email: email) do |user|
-      user.email = email
+    account_id = response.parsed_response['sub']
+    user = User.find_or_create_by!(account_id: account_id) do |user|
       user.name = response.parsed_response['name']
+      user.email = response.parsed_response['email']
     end
 
     render json: user
