@@ -1,8 +1,3 @@
-require 'google/apis/drive_v3'
-require 'google/api_client/client_secrets'
-
-Drive = Google::Apis::DriveV3
-
 class DocumentsController < ApplicationController
 
   def create

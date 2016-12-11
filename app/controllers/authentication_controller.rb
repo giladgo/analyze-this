@@ -1,5 +1,3 @@
-require 'google/api_client/client_secrets'
-
 class AuthenticationController < ApplicationController
 
   def google
